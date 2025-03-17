@@ -3,12 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import TopMenu from "../components/TopMenu";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "where every event finds its venue",
-  description: "สถานที่จัดเลี้ยงที่ดีที่สุด พร้อมบริการระดับมืออาชีพ ที่จะทำให้งานของคุณสมบูรณ์แบบ",
+  title: "Venue Booking - Find Your Perfect Event Space",
+  description: "Book exceptional venues for any occasion - weddings, corporate events, private parties and more",
 };
 
 export default function RootLayout({
@@ -18,12 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} gradient-pastel min-h-screen`}>
         <TopMenu />
         <main className="min-h-[calc(100vh-400px)]">
           {children}
         </main>
-        
+       
       </body>
     </html>
   );
