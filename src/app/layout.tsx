@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} gradient-pastel min-h-screen`}>
+      <body className={inter.className}>
         <TopMenu />
         <main className="min-h-[calc(100vh-400px)]">
           {children}
