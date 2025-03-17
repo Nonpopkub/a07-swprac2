@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    padding: 0.8rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 80px;
+  }
+  
+  .menuContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
