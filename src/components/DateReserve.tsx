@@ -17,11 +17,7 @@ export default function DateReserve() {
                 <DatePicker value={date} onChange={(e) => {setDate(e); alert(e)}}/>
             </LocalizationProvider>
 
-            <Select variant="standard" name="venue" id="venue" className="h-[2em] w-[200px]" value={location} onChange={(e)=>setLocation(e.target.value)}>
-                <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
-                <MenuItem value="Spark">Spark Space</MenuItem>
-                <MenuItem value="GrandTable">The Grand Table</MenuItem>
-            </Select>
+           
         </div>
     )
 }

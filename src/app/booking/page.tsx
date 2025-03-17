@@ -86,7 +86,7 @@ export default function BookingPage() {
 
         {/* Date Picker สำหรับเลือกวันที่ */}
         <Box mt={5}>
-          <DateReserve onDateChange={handleDateChange} />
+          <DateReserve/>
         </Box>
 
         {/* ปุ่มกดจองสถานที่ */}

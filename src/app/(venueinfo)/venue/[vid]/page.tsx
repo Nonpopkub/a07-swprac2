@@ -1,39 +1,48 @@
-'use client'; 
+'use client'
 
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { notFound } from "next/navigation"
+import Image from "next/image"
 
-const venueListMock = [
-  { vid: '001', name: 'The Bloom Pavilion', image: '/images/bloom.jpg' },
-  { vid: '002', name: 'Spark Space', image: '/images/sparkspace.jpg' },
-  { vid: '003', name: 'The Grand Table', image: '/images/grandtable.jpg' }
-];
+// Mock data with venue details
+const venueDetails = new Map([
+  ['001', {
+    title: 'The Bloom Pavilion',
+    description: 'Our stunning pavilion offers a perfect balance of indoor elegance and outdoor beauty, ideal for weddings and special celebrations with up to 200 guests.',
+    imageUrl: '/images/bloom.jpg',
+  }],
+  ['002', {
+    title: 'Spark Space',
+    description: 'A modern, versatile venue with cutting-edge technology and customizable layouts, perfect for corporate events, product launches, and creative gatherings.',
+    imageUrl: '/images/sparkspace.jpg',
+  }],
+  ['003', {
+    title: 'The Grand Table',
+    description: 'An intimate dining venue with exquisite decor and world-class catering options, ideal for private dinners, anniversaries, and exclusive celebrations.',
+    imageUrl: '/images/grandtable.jpg',
+  }],
+])
 
-const VenuePage = () => {
-  const params = useParams(); // ใช้ useParams สำหรับ dynamic segment ใน App Router
-  const { vid } = params as { vid: string };
-  const [venue, setVenue] = useState<{ vid: string; name: string; image: string } | null>(null);
+export default function VenueDetails({ params }: { params: { vid: string } }) {
+  const venue = venueDetails.get(params.vid)
 
-  useEffect(() => {
-    if (vid) {
-      const selectedVenue = venueListMock.find((v) => v.vid === vid);
-      if (selectedVenue) {
-        setVenue(selectedVenue);
-      }
-    }
-  }, [vid]);
-
-  if (!venue) return <div>Loading...</div>;
+  if (!venue) {
+    notFound()
+  }
 
   return (
-    <div style={{ padding: '100px', display: 'flex', alignItems: 'center', gap: '20px' }}>
-      <img src={venue.image} alt={venue.name} style={{ width: '300px', height: '200px', borderRadius: '8px' }} />
-      <div>
-        <h1>{venue.name}</h1>
-        <p>สถานที่จัดงาน: <strong>{venue.name}</strong></p>
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="relative h-[400px] mb-6">
+          <Image
+            src={venue.imageUrl}
+            alt={venue.title}
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+        <h1 className="text-3xl font-bold mb-4">{venue.title}</h1>
+        <p className="text-gray-600">{venue.description}</p>
       </div>
     </div>
-  );
-};
-
-export default VenuePage;
+  )
+}

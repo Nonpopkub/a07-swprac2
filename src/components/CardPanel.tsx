@@ -5,18 +5,20 @@ import Link from "next/link";
 
 export default function CardPanel() {
 
-    const cardReducer = (venueList: Map<string, number>, action: { type: string; venueName: string; rating?: number }) => {
+    const cardReducer = (compareMap: Map<string, number>, action: {type: string, venueName: string, rating: number}) => {
         switch (action.type) {
             case 'add': {
-                return new Map([...venueList, [action.venueName, action.rating ?? 0]]);
+                const updatedMap = new Map(compareMap);
+                updatedMap.set(action.venueName, action.rating);
+                return updatedMap;
             }
             case 'remove': {
-                const newVenueList = new Map(venueList);
-                newVenueList.delete(action.venueName);
-                return newVenueList;
+                const updatedMap = new Map(compareMap);
+                updatedMap.delete(action.venueName);
+                return updatedMap;
             }
             default:
-                return venueList;
+                return compareMap;
         }
     };
 
